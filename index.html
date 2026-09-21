@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>熊沢建設 Q1 KPI｜全社予算・河野さん個人版</title>
+  <style>
+    :root {
+      --navy: #16324f;
+      --blue: #2d6cdf;
+      --blue-soft: #eaf1ff;
+      --ink: #1f2937;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --bg: #f5f7fb;
+      --green: #16845b;
+      --amber: #b7791f;
+      --red: #c2414b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 22px 56px; }
+    header {
+      background: linear-gradient(135deg, var(--navy), #245b87);
+      color: #fff;
+      border-radius: 20px;
+      padding: 30px 34px;
+      box-shadow: 0 10px 28px rgba(22, 50, 79, .18);
+    }
+    .eyebrow { margin: 0 0 5px; color: #b9d5ef; font-size: 13px; letter-spacing: .08em; }
+    h1 { margin: 0; font-size: clamp(25px, 4vw, 38px); letter-spacing: -.02em; }
+    .subtitle { margin: 8px 0 0; color: #e4effa; }
+    .notice {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 10px;
+      background: rgba(255,255,255,.1);
+      font-size: 14px;
+    }
+    h2 { margin: 34px 0 12px; color: var(--navy); font-size: 22px; }
+    h3 { margin: 0 0 8px; color: var(--navy); font-size: 17px; }
+    .grid { display: grid; gap: 14px; }
+    .cards { grid-template-columns: repeat(4, 1fr); }
+    .card, .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(31, 41, 55, .05);
+    }
+    .card { padding: 18px; }
+    .card .label { color: var(--muted); font-size: 13px; }
+    .card .value { margin-top: 6px; color: var(--navy); font-size: 30px; font-weight: 800; }
+    .card .unit { font-size: 14px; font-weight: 500; }
+    .card .note { margin-top: 2px; color: var(--muted); font-size: 12px; }
+    .panel { padding: 20px; }
+    .two { grid-template-columns: 1fr 1fr; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 11px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+    th { background: #f0f4fa; color: var(--navy); font-weight: 700; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    .right { text-align: right; }
+    .small { color: var(--muted); font-size: 12px; }
+    .tag { display: inline-block; padding: 3px 8px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 700; }
+    .tag.gray { background: #eef1f4; color: #667085; }
+    input {
+      width: 86px;
+      padding: 7px 8px;
+      border: 1px solid #bcc8d8;
+      border-radius: 7px;
+      text-align: right;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+    }
+    input:focus { outline: 3px solid rgba(45,108,223,.18); border-color: var(--blue); }
+    .progress { min-width: 110px; height: 8px; border-radius: 999px; background: #e7ecf3; overflow: hidden; }
+    .progress > span { display: block; height: 100%; width: 0; background: var(--blue); border-radius: inherit; transition: width .2s ease; }
+    .status { font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .status.good { color: var(--green); }
+    .status.warn { color: var(--amber); }
+    .status.bad { color: var(--red); }
+    .checklist { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .checklist li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 9px; background: #fbfcfe; }
+    .checklist input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--blue); }
+    .formula { padding: 12px 14px; border-left: 4px solid var(--blue); background: var(--blue-soft); border-radius: 8px; font-size: 14px; }
+    .footer { margin-top: 22px; color: var(--muted); font-size: 12px; }
+    .print-button { float: right; border: 0; border-radius: 8px; padding: 8px 12px; color: #fff; background: rgba(255,255,255,.18); cursor: pointer; font: inherit; }
+    .print-button:hover { background: rgba(255,255,255,.3); }
+    @media (max-width: 850px) { .cards, .two { grid-template-columns: 1fr 1fr; } .panel { overflow-x: auto; } table { min-width: 650px; } }
+    @media (max-width: 520px) { .wrap { padding: 18px 12px 40px; } header { padding: 24px 20px; } .cards, .two { grid-template-columns: 1fr; } .print-button { float: none; display: block; margin: 12px 0 0; } }
+    @media print {
+      body { background: #fff; }
+      .wrap { max-width: none; padding: 0; }
+      header { color: #000; background: #fff; border: 2px solid var(--navy); box-shadow: none; }
+      .eyebrow, .subtitle, .notice { color: #333; }
+      .notice { border-color: var(--line); background: #fff; }
+      .print-button { display: none; }
+      .card, .panel { box-shadow: none; break-inside: avoid; }
+      h2 { break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <button class="print-button" onclick="window.print()">印刷／PDF</button>
+      <p class="eyebrow">KUMAZAWA CONSTRUCTION｜PERSONAL KPI</p>
+      <h1>熊沢建設 Q1 KPI</h1>
+      <p class="subtitle">全社予算・担当マップ＋河野さん個人版｜2026年度 第1四半期（9月〜11月）</p>
+      <div class="notice">全社の予算と担当分野を確認したうえで、河野さんの主担当「用地取得営業」を個人KPIとして分離しています。市川さんの営業参加は、現時点では追加提案として表示しています。</div>
+    </header>
+
+    <section>
+      <h2>全社の年間予算とQ1基準</h2>
+      <div class="panel">
+        <table>
+          <thead><tr><th>区分</th><th class="right">年間売上</th><th class="right">粗利</th><th class="right">粗利率</th><th class="right">Q1基準</th></tr></thead>
+          <tbody>
+            <tr><td>公共土木</td><td class="right">8,000万円</td><td class="right">2,560万円</td><td class="right">32％</td><td class="right">2,000万円</td></tr>
+            <tr><td>民間土木</td><td class="right">1億円</td><td class="right">3,000万円</td><td class="right">30％</td><td class="right">2,500万円</td></tr>
+            <tr><td>PPA・樹木葬</td><td class="right">1億2,000万円</td><td class="right">1,800万円</td><td class="right">15％</td><td class="right">3,000万円</td></tr>
+            <tr><td>解体</td><td class="right">2,000万円</td><td class="right">300万円</td><td class="right">15％</td><td class="right">500万円</td></tr>
+            <tr><td>修繕・営繕</td><td class="right">4,000万円</td><td class="right">1,000万円</td><td class="right">25％</td><td class="right">1,000万円</td></tr>
+            <tr><td><strong>本業合計</strong></td><td class="right"><strong>3億6,000万円</strong></td><td class="right"><strong>8,660万円</strong></td><td class="right"><strong>24.06％</strong></td><td class="right"><strong>9,000万円</strong></td></tr>
+            <tr><td>建築（下請け）</td><td class="right">1億3,000万円</td><td class="right">1,950万円</td><td class="right">15％</td><td class="right">3,250万円</td></tr>
+            <tr><td>営業外収益</td><td class="right">2,000万円</td><td class="right">200万円</td><td class="right">10％</td><td class="right">500万円</td></tr>
+            <tr><td><strong>全社合計</strong></td><td class="right"><strong>5億1,000万円</strong></td><td class="right"><strong>1億810万円</strong></td><td class="right"><strong>21.2％</strong></td><td class="right"><strong>1億2,750万円</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="small">Q1基準は年間目標を4分割した参考値です。新規事業はQ1が営業準備期間のため、売上だけでなくリスト・訪問・面談・案件化を先行KPIにします。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>担当者別の事業分野</h2>
+      <div class="panel">
+        <table>
+          <thead><tr><th>担当</th><th>主な分野</th><th>役割</th><th>河野さんとの関係</th></tr></thead>
+          <tbody>
+            <tr><td><strong>河野</strong></td><td>用地取得・民間土木</td><td>設計事務所・事業コンサル・銀行から上流相談を発掘し、事業用地・造成案件にする</td><td><span class="tag">個人KPI対象</span></td></tr>
+            <tr><td><strong>柳井</strong></td><td>民間土木・PPA・解体</td><td>営業・施工側との連携、解体案件の推進</td><td>銀行リストを共有</td></tr>
+            <tr><td><strong>田中洋輔</strong></td><td>PPA・蓄電池</td><td>中部電力との連携、PPA営業、蓄電池の商品選定</td><td>必要時に支援候補</td></tr>
+            <tr><td><strong>田中博規</strong></td><td>樹木葬</td><td>寺院紹介を活用した営業、専門会社との連携</td><td>個人KPI対象外</td></tr>
+            <tr><td><strong>浦志・全員</strong></td><td>公共土木</td><td>県土木への進出、人材採用・体制整備</td><td>個人KPI対象外</td></tr>
+            <tr><td><strong>VAZ TWO</strong></td><td>営業リスト支援</td><td>非住宅設計事務所・事業コンサル、M&amp;A会社等のリスト作成</td><td>河野さんが優先順位を付ける</td></tr>
+            <tr><td><strong>市川さん</strong></td><td>名古屋〜三河・金融ルート</td><td>碧海信用金庫、岡崎の税理士法人等の既存接点を活用</td><td><span class="tag gray">営業体制への追加提案</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Q1の着地点</h2>
+      <div class="grid cards">
+        <div class="card"><div class="label">用地取得訪問</div><div class="value">24<span class="unit">件</span></div><div class="note">週2件／月8件</div></div>
+        <div class="card"><div class="label">新規案件化</div><div class="value">6<span class="unit">件</span></div><div class="note">月2件</div></div>
+        <div class="card"><div class="label">提案・概算見積</div><div class="value">5<span class="unit">件</span></div><div class="note">Q1累計</div></div>
+        <div class="card"><div class="label">営業・調査工数</div><div class="value">120<span class="unit">時間</span></div><div class="note">週10時間目安</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>予算から見た河野さんの主担当</h2>
+      <div class="panel">
+        <table>
+          <thead><tr><th>分野</th><th class="right">年間売上</th><th class="right">Q1基準</th><th>河野さんの役割</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag">用地取得・民間土木</span></td><td class="right">1億円</td><td class="right">2,500万円</td><td>非住宅設計事務所・事業コンサル・銀行から上流相談を発掘し、事業用地・造成案件へつなげる</td></tr>
+            <tr><td><span class="tag gray">解体との連携支援</span></td><td class="right">—</td><td class="right">—</td><td>銀行営業先リストを柳井さんと共有。同日営業につなげる</td></tr>
+            <tr><td><span class="tag gray">PPA支援候補</span></td><td class="right">—</td><td class="right">—</td><td>必要時に蓄電池の商品選定・営業ツール検討を支援。個人KPIには含めない</td></tr>
+            <tr><td><strong>主担当合計</strong></td><td class="right"><strong>1億円</strong></td><td class="right"><strong>2,500万円</strong></td><td>※Q1の単純按分。個人売上ノルマではなく担当分野の受注貢献額</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>月別の実行目標と実績</h2>
+      <div class="panel">
+        <table id="monthlyTable">
+          <thead><tr><th>月</th><th>用地訪問目標</th><th>訪問実績</th><th>案件化目標</th><th>案件化実績</th><th>提案目標</th><th>提案実績</th><th>進捗</th></tr></thead>
+          <tbody>
+            <tr data-month="sep"><td><strong>9月</strong><br><span class="small">準備・初期接点</span></td><td class="right">6</td><td><input type="number" min="0" value="0" data-key="sep-visits"></td><td class="right">1</td><td><input type="number" min="0" value="0" data-key="sep-opps"></td><td class="right">1</td><td><input type="number" min="0" value="0" data-key="sep-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-month="oct"><td><strong>10月</strong><br><span class="small">訪問を増やす</span></td><td class="right">8</td><td><input type="number" min="0" value="0" data-key="oct-visits"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-month="nov"><td><strong>11月</strong><br><span class="small">案件化・提案</span></td><td class="right">10</td><td><input type="number" min="0" value="0" data-key="nov-visits"></td><td class="right">3</td><td><input type="number" min="0" value="0" data-key="nov-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="nov-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr class="total"><td><strong>Q1合計</strong></td><td class="right"><strong>24</strong></td><td id="totalVisits" class="right"><strong>0</strong></td><td class="right"><strong>6</strong></td><td id="totalOpps" class="right"><strong>0</strong></td><td class="right"><strong>5</strong></td><td id="totalProposals" class="right"><strong>0</strong></td><td id="totalStatus" class="status">未入力</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>週次の最低ライン</h2>
+        <div class="panel">
+          <table>
+            <thead><tr><th>項目</th><th>週の目標</th><th>運用ルール</th></tr></thead>
+            <tbody>
+              <tr><td>用地取得訪問</td><td><strong>2件</strong></td><td>設計事務所・事業コンサル1件＋銀行1件</td></tr>
+              <tr><td>営業・調査</td><td><strong>10時間</strong></td><td>訪問、土地情報の確認、役所・事業化調査</td></tr>
+              <tr><td>次回行動</td><td><strong>4件</strong></td><td>訪問後に次の期限・担当を登録</td></tr>
+              <tr><td>案件記録</td><td><strong>100％</strong></td><td>案件名・区分・見込み額を予定名に記載</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h2>案件化の判定</h2>
+        <div class="panel">
+          <ul class="checklist">
+            <li><input type="checkbox"><span>銀行営業先リストを作成し、解体の柳井さんと共有できている</span></li>
+            <li><input type="checkbox"><span>VAZ TWOの設計事務所・事業コンサルリストを確認し、優先順位を付けている</span></li>
+            <li><input type="checkbox"><span>顧客・紹介元と土地活用または事業承継の課題が確認できている</span></li>
+            <li><input type="checkbox"><span>次回訪問・調査・提案の日付が決まっている</span></li>
+            <li><input type="checkbox"><span>3％を基準に、案件規模・造成費を踏まえたフィー案を整理している</span></li>
+            <li><input type="checkbox"><span>売上見込み・粗利見込みを仮入力している</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>河野さんの連携タスク</h2>
+        <div class="panel">
+          <ul class="checklist">
+            <li><input type="checkbox"><span>銀行営業先リストを作成し、解体の柳井さんが同日営業に使える状態にする</span></li>
+            <li><input type="checkbox"><span>VAZ TWOの設計事務所・事業コンサルリストを受け取り、訪問優先順位を付ける</span></li>
+            <li><input type="checkbox"><span>営業資料について斎藤さんとの詳細打合せを行う</span></li>
+            <li><input type="checkbox"><span>フィー3％を基準に、案件規模・造成費に応じた料率案を整理する</span></li>
+            <li><input type="checkbox"><span>市川さんの営業参加（名古屋〜三河・碧海信用金庫・岡崎の税理士法人）を営業体制案に入れて確認する</span></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2>次回会議（金曜15:00）の確認事項</h2>
+        <div class="panel">
+          <ul class="checklist">
+            <li><input type="checkbox"><span>用地取得営業資料で、最初に説明するサービス範囲を確認</span></li>
+            <li><input type="checkbox"><span>設計事務所・事業コンサル・銀行別の営業資料の使い分けを確認</span></li>
+            <li><input type="checkbox"><span>3％フィーの算定基準と、大型案件・造成費が大きい案件の考え方を確認</span></li>
+            <li><input type="checkbox"><span>アポイント後の訪問担当・資料準備・次回行動の分担を確認</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>運用メモ</h2>
+      <div class="panel">
+        <div class="formula"><strong>週次：</strong>用地取得訪問2件と次回行動を確認 → <strong>月次：</strong>案件化・提案・フィー案を確認 → <strong>Q1：</strong>受注見込み2,500万円につながる用地案件群を形成</div>
+        <p class="small">訪問実績・案件化実績・提案実績を入力すると、このブラウザに自動保存されます。ブラウザのデータを消去すると入力内容も消えます。</p>
+      </div>
+    </section>
+
+    <p class="footer">作成基準：経営方針・会議共有事項／カレンダー工数集計（2026年8月17日〜9月21日）</p>
+  </main>
+  <script>
+    const storageKey = 'kono-kpi-q1-2026';
+    const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    document.querySelectorAll('input[data-key]').forEach(input => {
+      if (saved[input.dataset.key] !== undefined) input.value = saved[input.dataset.key];
+      input.addEventListener('input', update);
+    });
+    document.querySelectorAll('.checklist input').forEach((input, i) => {
+      const key = 'check-' + i;
+      input.checked = saved[key] === true;
+      input.addEventListener('change', () => { saved[key] = input.checked; localStorage.setItem(storageKey, JSON.stringify(saved)); });
+    });
+    function value(key) { return Number(document.querySelector(`[data-key="${key}"]`).value || 0); }
+    function update() {
+      const targets = { visits: 0, opps: 0, proposals: 0 };
+      const actuals = { visits: 0, opps: 0, proposals: 0 };
+      document.querySelectorAll('#monthlyTable tbody tr[data-month]').forEach(row => {
+        const m = row.dataset.month;
+        const v = value(`${m}-visits`), o = value(`${m}-opps`), p = value(`${m}-proposals`);
+        const tv = Number(row.children[1].textContent), to = Number(row.children[3].textContent), tp = Number(row.children[5].textContent);
+        targets.visits += tv; targets.opps += to; targets.proposals += tp;
+        actuals.visits += v; actuals.opps += o; actuals.proposals += p;
+        const ratio = Math.min(100, Math.round(((v / tv) + (o / to) + (p / tp)) / 3 * 100));
+        row.querySelector('.progress span').style.width = ratio + '%';
+        const status = row.querySelector('.status');
+        status.textContent = ratio >= 100 ? '達成' : ratio > 0 ? ratio + '%進捗' : '未入力';
+        status.className = 'status ' + (ratio >= 100 ? 'good' : ratio >= 50 ? 'warn' : 'bad');
+        saved[`${m}-visits`] = v; saved[`${m}-opps`] = o; saved[`${m}-proposals`] = p;
+      });
+      document.getElementById('totalVisits').innerHTML = `<strong>${actuals.visits}</strong>`;
+      document.getElementById('totalOpps').innerHTML = `<strong>${actuals.opps}</strong>`;
+      document.getElementById('totalProposals').innerHTML = `<strong>${actuals.proposals}</strong>`;
+      const totalRatio = Math.min(100, Math.round(((actuals.visits / targets.visits) + (actuals.opps / targets.opps) + (actuals.proposals / targets.proposals)) / 3 * 100));
+      const totalStatus = document.getElementById('totalStatus');
+      totalStatus.textContent = totalRatio >= 100 ? '達成' : totalRatio > 0 ? totalRatio + '%進捗' : '未入力';
+      totalStatus.className = 'status ' + (totalRatio >= 100 ? 'good' : totalRatio >= 50 ? 'warn' : 'bad');
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+    }
+    update();
+  </script>
+</body>
+</html>
