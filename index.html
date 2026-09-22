@@ -253,20 +253,31 @@
       </div>
     </section>
 
-    <section>
-      <h2>運用メモ</h2>
-      <div class="panel">
-        <div class="formula"><strong>週次：</strong>営業訪問（物流・設計・コンサル）2件と次回行動を確認 → <strong>月次：</strong>案件化・提案・フィー案を確認 → <strong>Q1：</strong>受注見込み2,500万円につながる用地案件群を形成</div>
-        <p class="small">実績欄は週次で更新し、月次で目標との差異を確認します。</p>
-        <p class="small"><strong>※別記：案件実績の計上基準</strong>　案件化実績は訪問件数ではなく、相手の具体的な課題、当社が関われる用途・工事の方向性、次回訪問・調査・提案の日程、売上・粗利の概算を確認・登録できた案件を、初めて案件化した月に1件として計上します。同一案件の重複計上はしません。</p>
-      </div>
-    </section>
-
     <p class="footer">作成：河野｜営業部門共有用｜作成基準：経営方針・会議共有事項／カレンダー工数集計（2026年8月17日〜9月21日）</p>
   </main>
   <script>
     const storageKey = 'kono-kpi-q1-2026';
     const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    const publishedChecklist = {
+      'check-0': false,
+      'check-1': false,
+      'check-2': false,
+      'check-3': true,
+      'check-4': false,
+      'check-5': false,
+      'check-6': false,
+      'check-7': false,
+      'check-8': false,
+      'check-9': false,
+      'check-10': false,
+      'check-11': false,
+      'check-12': false,
+      'check-13': false,
+      'check-14': false
+    };
+    Object.entries(publishedChecklist).forEach(([key, value]) => {
+      if (saved[key] === undefined) saved[key] = value;
+    });
     if (saved.__sepActualsUpdated20260922 !== true) {
       saved['sep-visits'] = 2;
       saved['sep-opps'] = 2;
