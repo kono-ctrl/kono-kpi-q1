@@ -188,7 +188,7 @@
         <table id="monthlyTable">
           <thead><tr><th>月</th><th>用地訪問目標</th><th>訪問実績</th><th>案件化目標</th><th>案件化実績</th><th>提案目標</th><th>提案実績</th><th>進捗</th></tr></thead>
           <tbody>
-            <tr data-month="sep"><td><strong>9月</strong><br><span class="small">準備・初期接点</span></td><td class="right">6</td><td><input type="number" min="0" value="0" data-key="sep-visits"></td><td class="right">1</td><td><input type="number" min="0" value="0" data-key="sep-opps"></td><td class="right">1</td><td><input type="number" min="0" value="0" data-key="sep-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-month="sep"><td><strong>9月</strong><br><span class="small">準備・初期接点</span></td><td class="right">6</td><td><input type="number" min="0" value="2" data-key="sep-visits"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-opps"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
             <tr data-month="oct"><td><strong>10月</strong><br><span class="small">訪問を増やす</span></td><td class="right">8</td><td><input type="number" min="0" value="0" data-key="oct-visits"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
             <tr data-month="nov"><td><strong>11月</strong><br><span class="small">案件化・提案</span></td><td class="right">10</td><td><input type="number" min="0" value="0" data-key="nov-visits"></td><td class="right">3</td><td><input type="number" min="0" value="0" data-key="nov-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="nov-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
             <tr class="total"><td><strong>Q1合計</strong></td><td class="right"><strong>24</strong></td><td id="totalVisits" class="right"><strong>0</strong></td><td class="right"><strong>6</strong></td><td id="totalOpps" class="right"><strong>0</strong></td><td class="right"><strong>5</strong></td><td id="totalProposals" class="right"><strong>0</strong></td><td id="totalStatus" class="status">未入力</td></tr>
@@ -267,6 +267,13 @@
   <script>
     const storageKey = 'kono-kpi-q1-2026';
     const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    if (saved.__sepActualsUpdated20260922 !== true) {
+      saved['sep-visits'] = 2;
+      saved['sep-opps'] = 2;
+      saved['sep-proposals'] = 2;
+      saved.__sepActualsUpdated20260922 = true;
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+    }
     document.querySelectorAll('input[data-key]').forEach(input => {
       if (saved[input.dataset.key] !== undefined) input.value = saved[input.dataset.key];
       input.addEventListener('input', update);
