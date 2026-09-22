@@ -186,34 +186,32 @@
       <h2>月別の実行目標と実績</h2>
       <div class="panel">
         <table id="monthlyTable">
-          <thead><tr><th>月</th><th>営業訪問目標</th><th>訪問実績</th><th>案件化目標</th><th>案件化実績</th><th>提案目標</th><th>提案実績</th><th>進捗</th></tr></thead>
+          <thead><tr><th>月</th><th>営業訪問目標</th><th>訪問実績</th><th>案件化目標</th><th>案件化実績</th><th>提案目標</th><th>提案実績</th><th>契約目標</th><th>契約実績</th><th>進捗</th></tr></thead>
           <tbody>
-            <tr data-month="sep"><td><strong>9月</strong><br><span class="small">準備・初期接点</span></td><td class="right">6</td><td><input type="number" min="0" value="2" data-key="sep-visits"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-opps"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
-            <tr data-month="oct"><td><strong>10月</strong><br><span class="small">訪問を増やす</span></td><td class="right">8</td><td><input type="number" min="0" value="0" data-key="oct-visits"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
-            <tr data-month="nov"><td><strong>11月</strong><br><span class="small">案件化・提案</span></td><td class="right">10</td><td><input type="number" min="0" value="0" data-key="nov-visits"></td><td class="right">3</td><td><input type="number" min="0" value="0" data-key="nov-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="nov-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
-            <tr class="total"><td><strong>Q1合計</strong></td><td class="right"><strong>24</strong></td><td id="totalVisits" class="right"><strong>0</strong></td><td class="right"><strong>6</strong></td><td id="totalOpps" class="right"><strong>0</strong></td><td class="right"><strong>5</strong></td><td id="totalProposals" class="right"><strong>0</strong></td><td id="totalStatus" class="status">未入力</td></tr>
+            <tr data-month="sep"><td><strong>9月</strong><br><span class="small">準備・初期接点</span></td><td class="right">6</td><td><input type="number" min="0" value="2" data-key="sep-visits"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-opps"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-proposals"></td><td class="right">1</td><td><input type="number" min="0" value="0" data-key="sep-contracts"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-month="oct"><td><strong>10月</strong><br><span class="small">訪問を増やす</span></td><td class="right">8</td><td><input type="number" min="0" value="0" data-key="oct-visits"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-proposals"></td><td class="right">1</td><td><input type="number" min="0" value="0" data-key="oct-contracts"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-month="nov"><td><strong>11月</strong><br><span class="small">案件化・提案</span></td><td class="right">10</td><td><input type="number" min="0" value="0" data-key="nov-visits"></td><td class="right">3</td><td><input type="number" min="0" value="0" data-key="nov-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="nov-proposals"></td><td class="right">0</td><td><input type="number" min="0" value="0" data-key="nov-contracts"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr class="total"><td><strong>Q1合計</strong></td><td class="right"><strong>24</strong></td><td id="totalVisits" class="right"><strong>0</strong></td><td class="right"><strong>6</strong></td><td id="totalOpps" class="right"><strong>0</strong></td><td class="right"><strong>5</strong></td><td id="totalProposals" class="right"><strong>0</strong></td><td class="right"><strong>2</strong></td><td id="totalContracts" class="right"><strong>0</strong></td><td id="totalStatus" class="status">未入力</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <section>
-      <h2>案件区分別の収益化KPI</h2>
+      <h2>案件化後の収益化KPI（平均値）</h2>
       <div class="panel">
         <table>
-          <thead><tr><th>案件区分</th><th>リードタイム</th><th>成約率</th><th>獲得単価</th><th>Q1の扱い</th></tr></thead>
+          <thead><tr><th>指標</th><th>算定方法</th><th>Q1基準・現時点</th><th>運用</th></tr></thead>
           <tbody>
-            <tr><td>事業用地の仕入れ・買主探索</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>営業・調査工数÷案件化件数</td><td>Q1計測開始</td></tr>
-            <tr><td>工場・倉庫</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
-            <tr><td>店舗</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
-            <tr><td>オフィス</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
-            <tr><td>造成単体</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
-            <tr><td>解体・造成・利活用</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
-            <tr><td>その他建築請負</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
+            <tr><td>営業訪問→案件化率</td><td>案件化6件 ÷ 営業訪問24件</td><td><strong>25％</strong></td><td>案件化の5条件をすべて満たした案件のみ計上</td></tr>
+            <tr><td>案件化→契約締結リードタイム</td><td>案件化日から契約締結日まで</td><td><strong>平均60日</strong><br><span class="small">管理範囲45〜90日</span></td><td>停止条件付き契約を含む。平均・中央値を確認</td></tr>
+            <tr><td>案件化→契約締結率</td><td>契約2件 ÷ 案件化6件</td><td><strong>33％</strong></td><td>工場・倉庫・店舗等を含む全案件平均</td></tr>
+            <tr><td>提案→契約締結率</td><td>契約2件 ÷ 提案5件</td><td><strong>40％</strong></td><td>提案・概算見積後の契約化率</td></tr>
+            <tr><td>獲得単価（工数ベース）</td><td>営業・調査120時間 ÷ 案件化6件</td><td><strong>20時間／案件化</strong><br><span class="small">60時間／契約</span></td><td>金額単価は人件費単価確定後に追加</td></tr>
+            <tr><td>Qごとの獲得基準比率</td><td>Q1基準2,500万円 ÷ 年間1億円</td><td><strong>Q1：25％</strong></td><td>Q2・Q3・Q4も各25％の単純按分</td></tr>
           </tbody>
         </table>
-        <p class="small">リードタイムは案件化日から、その案件に対応する契約締結日までを計測します。停止条件付き契約を含みます。成約率は成約件数÷案件化件数、獲得単価は区分別の営業・調査工数または原価÷案件化件数で算定します。</p>
-        <p class="small">Q1は各案件の実測値を蓄積し、Q2以降に案件区分・用途別の基準日数、成約率、獲得単価を設定します。Q1の獲得基準比率は年間目標に対して25％です。</p>
+        <p class="small">案件区分は記録上、事業用地の仕入れ・買主探索／工場・倉庫／店舗／オフィス／造成単体／解体・造成・利活用／その他建築請負に分類します。KPIの基準値は全案件の平均仮説とし、Q1終了後に実績で補正します。</p>
       </div>
     </section>
 
@@ -316,25 +314,29 @@
     });
     function value(key) { return Number(document.querySelector(`[data-key="${key}"]`).value || 0); }
     function update() {
-      const targets = { visits: 0, opps: 0, proposals: 0 };
-      const actuals = { visits: 0, opps: 0, proposals: 0 };
+      const targets = { visits: 0, opps: 0, proposals: 0, contracts: 0 };
+      const actuals = { visits: 0, opps: 0, proposals: 0, contracts: 0 };
       document.querySelectorAll('#monthlyTable tbody tr[data-month]').forEach(row => {
         const m = row.dataset.month;
-        const v = value(`${m}-visits`), o = value(`${m}-opps`), p = value(`${m}-proposals`);
-        const tv = Number(row.children[1].textContent), to = Number(row.children[3].textContent), tp = Number(row.children[5].textContent);
-        targets.visits += tv; targets.opps += to; targets.proposals += tp;
-        actuals.visits += v; actuals.opps += o; actuals.proposals += p;
-        const ratio = Math.min(100, Math.round(((v / tv) + (o / to) + (p / tp)) / 3 * 100));
+        const v = value(`${m}-visits`), o = value(`${m}-opps`), p = value(`${m}-proposals`), c = value(`${m}-contracts`);
+        const tv = Number(row.children[1].textContent), to = Number(row.children[3].textContent), tp = Number(row.children[5].textContent), tc = Number(row.children[7].textContent);
+        targets.visits += tv; targets.opps += to; targets.proposals += tp; targets.contracts += tc;
+        actuals.visits += v; actuals.opps += o; actuals.proposals += p; actuals.contracts += c;
+        const ratios = [[v, tv], [o, to], [p, tp], [c, tc]].filter(([actual, target]) => target > 0).map(([actual, target]) => actual / target);
+        const ratio = Math.min(100, Math.round(ratios.reduce((sum, item) => sum + item, 0) / ratios.length * 100));
         row.querySelector('.progress span').style.width = ratio + '%';
         const status = row.querySelector('.status');
         status.textContent = ratio >= 100 ? '達成' : ratio > 0 ? ratio + '%進捗' : '未入力';
         status.className = 'status ' + (ratio >= 100 ? 'good' : ratio >= 50 ? 'warn' : 'bad');
         saved[`${m}-visits`] = v; saved[`${m}-opps`] = o; saved[`${m}-proposals`] = p;
+        saved[`${m}-contracts`] = c;
       });
       document.getElementById('totalVisits').innerHTML = `<strong>${actuals.visits}</strong>`;
       document.getElementById('totalOpps').innerHTML = `<strong>${actuals.opps}</strong>`;
       document.getElementById('totalProposals').innerHTML = `<strong>${actuals.proposals}</strong>`;
-      const totalRatio = Math.min(100, Math.round(((actuals.visits / targets.visits) + (actuals.opps / targets.opps) + (actuals.proposals / targets.proposals)) / 3 * 100));
+      document.getElementById('totalContracts').innerHTML = `<strong>${actuals.contracts}</strong>`;
+      const totalRatios = [[actuals.visits, targets.visits], [actuals.opps, targets.opps], [actuals.proposals, targets.proposals], [actuals.contracts, targets.contracts]].filter(([actual, target]) => target > 0).map(([actual, target]) => actual / target);
+      const totalRatio = Math.min(100, Math.round(totalRatios.reduce((sum, item) => sum + item, 0) / totalRatios.length * 100));
       const totalStatus = document.getElementById('totalStatus');
       totalStatus.textContent = totalRatio >= 100 ? '達成' : totalRatio > 0 ? totalRatio + '%進捗' : '未入力';
       totalStatus.className = 'status ' + (totalRatio >= 100 ? 'good' : totalRatio >= 50 ? 'warn' : 'bad');
