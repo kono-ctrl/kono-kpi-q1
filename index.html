@@ -186,7 +186,7 @@
       <h2>月別の実行目標と実績</h2>
       <div class="panel">
         <table id="monthlyTable">
-          <thead><tr><th>月</th><th>用地訪問目標</th><th>訪問実績</th><th>案件化目標</th><th>案件化実績</th><th>提案目標</th><th>提案実績</th><th>進捗</th></tr></thead>
+          <thead><tr><th>月</th><th>営業訪問目標</th><th>訪問実績</th><th>案件化目標</th><th>案件化実績</th><th>提案目標</th><th>提案実績</th><th>進捗</th></tr></thead>
           <tbody>
             <tr data-month="sep"><td><strong>9月</strong><br><span class="small">準備・初期接点</span></td><td class="right">6</td><td><input type="number" min="0" value="2" data-key="sep-visits"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-opps"></td><td class="right">1</td><td><input type="number" min="0" value="2" data-key="sep-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
             <tr data-month="oct"><td><strong>10月</strong><br><span class="small">訪問を増やす</span></td><td class="right">8</td><td><input type="number" min="0" value="0" data-key="oct-visits"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-opps"></td><td class="right">2</td><td><input type="number" min="0" value="0" data-key="oct-proposals"></td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
@@ -198,18 +198,21 @@
     </section>
 
     <section>
-      <h2>案件化後の収益化KPI</h2>
+      <h2>案件区分別の収益化KPI</h2>
       <div class="panel">
         <table>
-          <thead><tr><th>指標</th><th>算定方法</th><th>Q1基準・現時点</th><th>運用</th></tr></thead>
+          <thead><tr><th>案件区分</th><th>リードタイム</th><th>成約率</th><th>獲得単価</th><th>Q1の扱い</th></tr></thead>
           <tbody>
-            <tr><td>案件化→成約リードタイム</td><td>案件化日から成約日までの日数</td><td><strong>Q1計測開始</strong></td><td>案件ごとに日付を記録し、平均・中央値を月次確認</td></tr>
-            <tr><td>案件化→成約の想定成約率</td><td>成約件数 ÷ 案件化件数</td><td><strong>実績蓄積後に基準化</strong></td><td>案件化時の見込みと、成約後の実績を分けて更新</td></tr>
-            <tr><td>獲得単価（工数ベース）</td><td>営業・調査120時間 ÷ 案件化6件</td><td><strong>20時間／案件化</strong></td><td>金額単価は人件費単価確定後に追加</td></tr>
-            <tr><td>Qごとの獲得基準比率</td><td>Q1基準2,500万円 ÷ 年間1億円</td><td><strong>Q1：25％</strong></td><td>単純按分の暫定値。Q2・Q3・Q4も各25％</td></tr>
+            <tr><td>事業用地の仕入れ・買主探索</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>営業・調査工数÷案件化件数</td><td>Q1計測開始</td></tr>
+            <tr><td>工場・倉庫</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
+            <tr><td>店舗・オフィス</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
+            <tr><td>造成単体</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
+            <tr><td>解体・造成・利活用</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
+            <tr><td>その他建築請負</td><td>案件化日→契約締結日</td><td>実績蓄積後</td><td>区分別に算定</td><td>Q1計測開始</td></tr>
           </tbody>
         </table>
-        <p class="small">成約リードタイムと成約率は、現時点で方針書に確定値がないため推定値を置かず、Q1の実績を計測して基準化します。</p>
+        <p class="small">リードタイムは案件化日から、その案件に対応する契約締結日までを計測します。停止条件付き契約を含みます。成約率は成約件数÷案件化件数、獲得単価は区分別の営業・調査工数または原価÷案件化件数で算定します。</p>
+        <p class="small">Q1は各案件の実測値を蓄積し、Q2以降に案件区分・用途別の基準日数、成約率、獲得単価を設定します。Q1の獲得基準比率は年間目標に対して25％です。</p>
       </div>
     </section>
 
