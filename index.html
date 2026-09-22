@@ -259,7 +259,7 @@
     const storageKey = 'kono-kpi-q1-2026';
     const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
     const publishedChecklist = {
-      'check-0': false,
+      'check-0': true,
       'check-1': false,
       'check-2': false,
       'check-3': true,
@@ -273,7 +273,7 @@
       'check-11': false,
       'check-12': false,
       'check-13': false,
-      'check-14': false
+      'check-14': true
     };
     Object.entries(publishedChecklist).forEach(([key, value]) => {
       if (saved[key] === undefined) saved[key] = value;
