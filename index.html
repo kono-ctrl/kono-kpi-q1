@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
   <title>熊沢建設 営業部門｜2026年度 第1四半期 施策・KPI</title>
   <style>
     :root {
@@ -15,6 +16,7 @@
       --bg: #f5f7fb;
       --green: #16845b;
       --amber: #b7791f;
+      --amber-soft: #fff6e5;
       --red: #c2414b;
     }
     * { box-sizing: border-box; }
@@ -44,9 +46,12 @@
       background: rgba(255,255,255,.1);
       font-size: 14px;
     }
+    header .meta { color: #cfe0f1; }
     h2 { margin: 34px 0 12px; color: var(--navy); font-size: 22px; }
+    h2 .new { margin-left: 8px; vertical-align: 3px; }
     h3 { margin: 0 0 8px; color: var(--navy); font-size: 17px; }
     .grid { display: grid; gap: 14px; }
+    .grid > * { min-width: 0; }
     .cards { grid-template-columns: repeat(4, 1fr); }
     .card, .panel {
       background: #fff;
@@ -60,15 +65,22 @@
     .card .unit { font-size: 14px; font-weight: 500; }
     .card .note { margin-top: 2px; color: var(--muted); font-size: 12px; }
     .panel { padding: 20px; }
+    .panel + .panel { margin-top: 14px; }
     .two { grid-template-columns: 1fr 1fr; }
     table { width: 100%; border-collapse: collapse; font-size: 14px; }
     th, td { padding: 10px 11px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
     th { background: #f0f4fa; color: var(--navy); font-weight: 700; white-space: nowrap; }
     tr:last-child td { border-bottom: 0; }
+    tr.subtotal td { background: #f7f9fc; font-weight: 700; }
+    tr.later td { color: var(--muted); }
+    tr.group td { padding-top: 14px; color: var(--navy); font-weight: 700; font-size: 13px; background: #fbfcfe; }
     .right { text-align: right; }
+    .nowrap { white-space: nowrap; }
     .small { color: var(--muted); font-size: 12px; }
-    .tag { display: inline-block; padding: 3px 8px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 700; }
+    .tag { display: inline-block; padding: 3px 8px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 700; white-space: nowrap; }
     .tag.gray { background: #eef1f4; color: #667085; }
+    .tag.amber { background: var(--amber-soft); color: var(--amber); }
+    .tag.green { background: #e7f5ee; color: var(--green); }
     input {
       width: 86px;
       padding: 7px 8px;
@@ -79,6 +91,7 @@
       color: var(--ink);
       background: #fff;
     }
+    input.rate { width: 66px; }
     input:focus { outline: 3px solid rgba(45,108,223,.18); border-color: var(--blue); }
     .progress { min-width: 110px; height: 8px; border-radius: 999px; background: #e7ecf3; overflow: hidden; }
     .progress > span { display: block; height: 100%; width: 0; background: var(--blue); border-radius: inherit; transition: width .2s ease; }
@@ -88,22 +101,66 @@
     .status.bad { color: var(--red); }
     .checklist { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
     .checklist li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 9px; background: #fbfcfe; }
-    .checklist input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--blue); }
+    .checklist input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--blue); flex: none; }
     .formula { padding: 12px 14px; border-left: 4px solid var(--blue); background: var(--blue-soft); border-radius: 8px; font-size: 14px; }
+    .caution { margin-top: 14px; padding: 12px 14px; border-left: 4px solid var(--amber); background: var(--amber-soft); border-radius: 8px; font-size: 14px; }
+    .caution strong { color: #8a5a12; }
     .footer { margin-top: 22px; color: var(--muted); font-size: 12px; }
+    .footer a, .small a { color: var(--blue); }
     .print-button { float: right; border: 0; border-radius: 8px; padding: 8px 12px; color: #fff; background: rgba(255,255,255,.18); cursor: pointer; font: inherit; }
     .print-button:hover { background: rgba(255,255,255,.3); }
-    @media (max-width: 850px) { .cards, .two { grid-template-columns: 1fr 1fr; } .panel { overflow-x: auto; } table { min-width: 650px; } }
-    @media (max-width: 520px) { .wrap { padding: 18px 12px 40px; } header { padding: 24px 20px; } .cards, .two { grid-template-columns: 1fr; } .print-button { float: none; display: block; margin: 12px 0 0; } }
+
+    /* 改訂ポイント */
+    .points { grid-template-columns: repeat(4, 1fr); }
+    .point { padding: 18px; }
+    .point .num { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 13px; font-weight: 800; }
+    .point h3 { margin: 10px 0 6px; font-size: 16px; line-height: 1.45; }
+    .point p { margin: 0; color: #475467; font-size: 13px; }
+
+    /* ファネル */
+    .funnel { display: flex; flex-wrap: nowrap; align-items: stretch; gap: 0; margin: 4px 0 6px; }
+    .step { flex: 1 1 0; min-width: 0; padding: 14px 8px; border: 1px solid var(--line); border-radius: 12px; background: #fff; text-align: center; }
+    .step .s-label { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .step .s-value { margin-top: 2px; color: var(--navy); font-size: clamp(20px, 2.2vw, 26px); font-weight: 800; line-height: 1.2; }
+    .step .s-unit { font-size: 13px; font-weight: 600; }
+    .step .s-note { margin-top: 3px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .step.key { border: 2px solid var(--blue); background: var(--blue-soft); }
+    .step.future { background: #f7f8fa; border-style: dashed; }
+    .arrow { flex: 0 0 54px; display: grid; place-items: center; color: var(--blue); font-size: 11px; font-weight: 700; text-align: center; line-height: 1.3; padding: 0 4px; }
+    .arrow::before { content: "→"; display: block; font-size: 20px; line-height: 1; }
+
+    /* 計算条件 */
+    .calc-inputs { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-bottom: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fbfcfe; font-size: 14px; }
+    .calc-inputs label { display: flex; align-items: center; gap: 8px; }
+    .calc-inputs input { width: 74px; }
+    .calc-summary { margin-top: 12px; font-size: 14px; }
+
+    @media (max-width: 960px) { .points { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 850px) {
+      .cards, .two { grid-template-columns: 1fr 1fr; }
+      .panel { overflow-x: auto; }
+      table { min-width: 650px; }
+      .funnel { flex-direction: column; }
+      .arrow { flex: 0 0 auto; padding: 6px 0; }
+      .arrow::before { content: "↓"; }
+    }
+    @media (max-width: 520px) {
+      .wrap { padding: 18px 12px 40px; }
+      header { padding: 24px 20px; }
+      .cards, .two, .points { grid-template-columns: 1fr; }
+      .print-button { float: none; display: block; margin: 12px 0 0; }
+    }
     @media print {
       body { background: #fff; }
       .wrap { max-width: none; padding: 0; }
       header { color: #000; background: #fff; border: 2px solid var(--navy); box-shadow: none; }
-      .eyebrow, .subtitle, .notice { color: #333; }
+      .eyebrow, .subtitle, .notice, header .meta { color: #333; }
       .notice { border-color: var(--line); background: #fff; }
       .print-button { display: none; }
-      .card, .panel { box-shadow: none; break-inside: avoid; }
+      .card, .panel, .step { box-shadow: none; break-inside: avoid; }
       h2 { break-after: avoid; }
+      .panel { overflow: visible; }
+      table { min-width: 0; }
     }
   </style>
 </head>
@@ -113,10 +170,20 @@
       <button class="print-button" onclick="window.print()">印刷／PDF</button>
       <p class="eyebrow">KUMAZAWA CONSTRUCTION｜SALES DEPARTMENT</p>
       <h1>営業部門 Q1 施策・KPI</h1>
-      <p class="subtitle">全社予算・担当マップ・行動計画｜2026年度 第1四半期（9月〜11月）</p>
-      <div class="notice">営業部門の重点施策、担当分野、実行目標を共有するための資料です。民間土木・用地取得営業における河野の行動KPIを、部門施策の一項目として整理しています。市川は不動産担当として営業参加予定です。</div>
-      <p class="small meta">作成：河野｜共有先：営業部門｜作成日：2026年9月21日</p>
+      <p class="subtitle">全社予算・担当マップ・外注架電リスト・行動計画｜2026年度 第1四半期（9月〜11月）</p>
+      <div class="notice">営業部門の重点施策、担当分野、実行目標を共有するための資料です。10月5日の改訂で、VAZ TWOが作成した外注架電リスト（8本・20,458件）を起点に「架電→決着→アポ→訪問→案件化」のKPIを追加しました。民間土木・用地取得営業における河野の行動KPIは、部門施策の一項目として引き続き整理しています。市川は不動産担当として営業に参加し、事業コンサルリストからのアポを受けます。</div>
+      <p class="small meta">作成：河野｜共有先：営業部門｜作成日：2026年9月21日｜改訂：2026年10月5日（外注架電リストを反映）</p>
     </header>
+
+    <section>
+      <h2>今回の改訂ポイント<span class="tag new">10月5日</span></h2>
+      <div class="grid points">
+        <div class="card point"><span class="num">1</span><h3>KPIの起点を「リスト×架電」に変更</h3><p>Q1残り（10月〜11月）は、用地・M&amp;Aのアライアンス先と太陽光の大屋根・中規模の計2,777件を3周架電し、部門合計でアポ50件・訪問33件・案件化8件を目標にします（2か月分の合計）。</p></div>
+                <div class="card point"><span class="num">2</span><h3>ボトルネックは架電より訪問</h3><p>設計事務所は河野、事業コンサルは市川がアポを受け、一人あたり週2件までに抑えます。超える分はVAZ TWOが架電のペースを落として翌週以降に回します。</p></div>
+        <div class="card point"><span class="num">3</span><h3>工場・倉庫は4つのリストが重なる</h3><p>太陽光・修繕・シェルター・遮熱は同じ工場・倉庫の母集団から作られています。同じ会社に別の商材で続けて電話しないよう、1拠点1窓口のルールを決めます。</p></div>
+        <div class="card point"><span class="num">4</span><h3>Q1は契約より先行指標で評価</h3><p>用地・太陽光とも、案件化から契約までは60日以上かかる見込みです。Q1はアポ・訪問・案件化で進み具合を測り、契約はQ2以降に数えます。</p></div>
+      </div>
+    </section>
 
     <section>
       <h2>全社の年間予算とQ1基準</h2>
@@ -147,11 +214,130 @@
           <tbody>
             <tr><td><strong>河野</strong></td><td>用地取得・民間土木</td><td>設計事務所・事業コンサル・銀行から上流相談を発掘し、事業用地・造成案件にする</td><td><span class="tag">担当KPI</span></td></tr>
             <tr><td><strong>柳井</strong></td><td>民間土木・PPA・解体</td><td>営業・施工側との連携、解体案件の推進</td><td>銀行リストを共有</td></tr>
-            <tr><td><strong>田中洋輔</strong></td><td>PPA・蓄電池</td><td>中部電力との連携、PPA営業、蓄電池の商品選定</td><td>必要時に支援候補</td></tr>
+            <tr><td><strong>田中洋輔</strong></td><td>PPA・蓄電池</td><td>中部電力との連携、PPA営業、蓄電池の商品選定</td><td>太陽光リストのアポを受ける</td></tr>
             <tr><td><strong>田中博規COO</strong></td><td>樹木葬</td><td>寺院紹介を活用した営業、専門会社との連携</td><td>今回の対象外</td></tr>
             <tr><td><strong>浦志CHRO・全員</strong></td><td>公共土木</td><td>県土木への進出、人材採用・体制整備</td><td>今回の対象外</td></tr>
-            <tr><td><strong>VAZ TWO</strong></td><td>営業リスト支援</td><td>非住宅設計事務所・事業コンサル、M&amp;A会社等のリスト作成</td><td>主担当が優先順位を付ける</td></tr>
-            <tr><td><strong>市川</strong></td><td>名古屋〜三河・金融ルート</td><td>碧海信用金庫、岡崎の税理士法人等の既存接点を活用</td><td><span class="tag gray">不動産担当として営業参加予定</span></td></tr>
+            <tr><td><strong>VAZ TWO</strong></td><td>外注架電（リスト作成・架電）</td><td>熊沢建設5本・ラ・カーサ3本、計8リスト20,458件を作成済み（9月28日）。架電でアポを取り、社内の担当へ引き継ぐ</td><td>リスト別KPIで週次確認</td></tr>
+                        <tr><td><strong>市川</strong></td><td>名古屋〜三河・金融ルート／事業コンサル</td><td>碧海信用金庫、岡崎の税理士法人等の既存接点を活用。外注架電の事業コンサルリスト（①-2）の精査とアポの受け手を担当</td><td><span class="tag">①-2のアポを受ける</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>外注架電リストの全体像<span class="tag new">追加</span></h2>
+      <div class="panel">
+        <table>
+          <thead><tr><th>No</th><th>リスト</th><th>事業</th><th>社内の受け手</th><th class="right">未架電件数</th><th class="right">3周の架電時間</th><th>実施時期</th></tr></thead>
+          <tbody>
+            <tr class="group"><td colspan="7">熊沢建設（このページのKPI対象）</td></tr>
+            <tr><td>③</td><td>M&amp;A支援機関（仲介・FA・コンサル士業）</td><td>解体（川上の案件情報）＋用地</td><td>柳井・河野</td><td class="right">191</td><td class="right nowrap">12〜16時間</td><td><span class="tag">第1波 10月</span></td></tr>
+            <tr><td>①-1</td><td>設計事務所（名古屋市＋尾張・住宅系除く）</td><td>用地取得〜造成</td><td>河野</td><td class="right">611</td><td class="right nowrap">39〜51時間</td><td><span class="tag">第1波 10月</span></td></tr>
+            <tr><td>①-2</td><td>事業コンサル等（名古屋市＋尾張）</td><td>用地取得〜造成</td><td>市川（案件化したら河野が同行）</td><td class="right">457</td><td class="right nowrap">29〜38時間</td><td><span class="tag">第1波 10月</span><br><span class="small">架電前に目視で精査</span></td></tr>
+            <tr><td>②</td><td>太陽光｜工場・倉庫 屋根1,000㎡以上（愛知県全域）</td><td>太陽光・蓄電（PPA無償設置）</td><td>田中洋輔・柳井</td><td class="right">3,928</td><td class="right nowrap">299〜412時間</td><td><span class="tag">第1波 大屋根</span><br><span class="tag">第2波 中規模</span></td></tr>
+            <tr><td>⑥</td><td>修繕・営繕｜工場・倉庫 推定売上10〜50億（名古屋市＋尾張）</td><td>修繕・営繕</td><td><span class="tag amber">要確定</span></td><td class="right">3,054</td><td class="right nowrap">232〜321時間</td><td><span class="tag gray">第3波 12月〜</span></td></tr>
+            <tr><td>⑧</td><td>やぐら型シェルター｜工場・倉庫 推定売上50億以上（三河）</td><td>やぐら型シェルター</td><td><span class="tag amber">要確定</span></td><td class="right">1,169</td><td class="right nowrap">89〜123時間</td><td><span class="tag gray">第3波 12月〜</span></td></tr>
+            <tr class="subtotal"><td colspan="4">熊沢建設 小計</td><td class="right">9,410</td><td class="right nowrap">700〜961時間</td><td></td></tr>
+            <tr class="group"><td colspan="7">ラ・カーサ（参考：同じ架電体制を使うため記載）</td></tr>
+            <tr class="later"><td>④</td><td>窓リノベ｜私立 保育所・幼稚園・認定こども園</td><td>窓リノベ（補助金）</td><td>ラ・カーサ</td><td class="right">1,625</td><td class="right nowrap">154〜228時間</td><td>ラ・カーサ側で配分</td></tr>
+            <tr class="later"><td>⑤</td><td>窓リノベ｜介護・福祉施設</td><td>窓リノベ（補助金）</td><td>ラ・カーサ</td><td class="right">6,105</td><td class="right nowrap">580〜855時間</td><td>ラ・カーサ側で配分</td></tr>
+            <tr class="later"><td>⑦</td><td>遮熱シート｜工場・倉庫 推定売上50億以上</td><td>遮熱シート</td><td>ラ・カーサ</td><td class="right">2,867</td><td class="right nowrap">218〜301時間</td><td>継続中</td></tr>
+            <tr class="subtotal"><td colspan="4">全8リスト 合計</td><td class="right">20,007</td><td class="right nowrap">1,652〜2,345時間</td><td></td></tr>
+          </tbody>
+        </table>
+        <p class="small">出典：VAZ TWO「熊沢建設・ラカーサ 全事業リスト一覧」（2026年9月28日）。件数は電話番号ベースの未架電件数です。架電時間はVAZ TWOの見積もりで、1時間20〜30コール、3周で未架電件数の1.9〜2.1倍のコールを想定しています。</p>
+        <div class="caution"><strong>全リストを3周すると1,652〜2,345時間かかります。</strong>月120時間の架電なら14〜20か月、熊沢建設分だけでも6〜8か月です。全部を同時には回せないため、予算の大きい分野（用地・民間土木、PPA）と、1件から複数の案件が出るアライアンス先（設計事務所・M&amp;A支援機関）を第1波にしています。</div>
+        <div class="caution"><strong>工場・倉庫リストの重なり（同じ電話番号）：</strong>太陽光②は、遮熱⑦と1,966件、修繕⑥と1,062件、シェルター⑧と772件が重なっています。<br>
+          ルール案：同じ拠点への架電は1回にまとめる。②で先に架電した拠点は⑥⑧の対象から90日外し、その電話で修繕・シェルターの関心も聞く。ラ・カーサの遮熱⑦（継続中）と重なる1,966件は、架電済みかどうかを照合してから②を掛ける。</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>リスト起点のKPIツリー｜部門合計・Q1残り2か月（10月〜11月）<span class="tag new">追加</span></h2>
+      <div class="panel">
+        <div class="funnel" aria-label="Q1残りのKPIツリー">
+          <div class="step"><div class="s-label">架電対象</div><div class="s-value">2,777<span class="s-unit">件</span></div><div class="s-note">第1波1,897＋第2波880</div></div>
+          <div class="arrow">1件に<br>約1.9回</div>
+          <div class="step"><div class="s-label">コール数</div><div class="s-value">5,200<span class="s-unit">回</span></div><div class="s-note">210時間×25回</div></div>
+          <div class="arrow">決着率<br>約77％</div>
+          <div class="step"><div class="s-label">決着</div><div class="s-value">2,100<span class="s-unit">件</span></div><div class="s-note">アポ・お断り等の結論が出た件数</div></div>
+          <div class="arrow">決着の<br>約2.4％</div>
+          <div class="step key"><div class="s-label">アポ</div><div class="s-value">50<span class="s-unit">件</span></div><div class="s-note">10月22・11月28</div></div>
+          <div class="arrow">Q1中に<br>約7割実施</div>
+          <div class="step key"><div class="s-label">訪問・面談</div><div class="s-value">33<span class="s-unit">件</span></div><div class="s-note">11月後半のアポは12月に実施</div></div>
+          <div class="arrow">訪問の<br>25％</div>
+          <div class="step key"><div class="s-label">案件化</div><div class="s-value">8<span class="s-unit">件</span></div><div class="s-note">案件化の判定を満たすもの</div></div>
+          <div class="arrow">案件化の<br>33％</div>
+          <div class="step future"><div class="s-label">契約</div><div class="s-value">3<span class="s-unit">件</span></div><div class="s-note">Q2以降に計上</div></div>
+        </div>
+        <p class="small">前提：架電開始は10月第2週、架電時間は10月90時間・11月120時間（計210時間）。1時間25コールと決着率（1周目57％・3周で80％）はVAZ TWOの熊沢建設・ラ・カーサでの過去実績です。アポ率・訪問実施率・案件化率は下の表の仮説値です。</p>
+      </div>
+
+      <div class="panel">
+        <h3>架電の反響率から見た見込み（リスト別・3周回し切った場合）</h3>
+        <p class="small" style="margin-top:0">アポ率は「決着した件数に対するアポの割合」の仮説値です。表の中で直接書き換えられます。VAZ TWOの過去データ（商材別）と10月2週分の実績が出たら置き換えます。</p>
+        <div class="calc-inputs">
+          <label>決着率 <input type="number" min="0" max="100" step="1" data-store="calc-settle" value="80">％</label>
+          <label>アポ→訪問実施 <input type="number" min="0" max="100" step="1" data-store="calc-visit" value="90">％</label>
+          <label>訪問→案件化 <input type="number" min="0" max="100" step="1" data-store="calc-opp" value="25">％</label>
+          <label>案件化→契約 <input type="number" min="0" max="100" step="1" data-store="calc-close" value="33">％</label>
+          <label>月の架電時間 <input type="number" min="1" step="10" data-store="calc-monthly" value="120">時間</label>
+          <label>架電の時間単価 <input type="number" min="0" step="100" data-store="calc-cost" value="" placeholder="未入力">円</label>
+        </div>
+        <table>
+          <thead><tr><th>No</th><th>リスト・区分</th><th>受け手</th><th class="right">件数</th><th class="right">3周の時間</th><th class="right">決着</th><th class="right">アポ率</th><th class="right">アポ</th><th class="right">訪問</th><th class="right">案件化</th><th class="right">契約</th><th class="right">1アポあたり</th></tr></thead>
+          <tbody id="listKpiBody"></tbody>
+        </table>
+        <p class="calc-summary" id="calcSummary"></p>
+        <p class="small">太陽光②は、「屋根の持ち主でない可能性が高い」行（構内・営業所名義、貸ビルの営業所・事務所）220件を後回しにし、残り3,708件を4区分に分けています。業界の目安として、接点のない法人へのテレアポのアポ率は0.1〜1％程度（<a href="https://sales-marker.jp/report/teleappointment-rate/" target="_blank" rel="noopener">Sales Marker</a>）、製造業向け自家消費太陽光では500件で12件（2.4％）の事例があります（<a href="https://renewable-energy.funaisoken.co.jp/column/column-2210/" target="_blank" rel="noopener">船井総研</a>）。ここでの仮説値はリスト件数あたり0.8〜3.2％で、アライアンス先と大屋根をやや高めに置いています。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>外注架電の月別目標と実績（部門合計・10月〜11月）<span class="tag new">追加</span></h2>
+      <div class="panel">
+        <table id="vazTable">
+          <thead><tr><th>指標</th><th class="right">10月目標</th><th>10月実績</th><th class="right">11月目標</th><th>11月実績</th><th class="right">Q1目標</th><th class="right">Q1実績</th><th>進捗</th></tr></thead>
+          <tbody>
+            <tr data-metric="hours"><td>架電時間</td><td class="right">90</td><td><input type="number" min="0" data-store="vaz-oct-hours" value="0"></td><td class="right">120</td><td><input type="number" min="0" data-store="vaz-nov-hours" value="0"></td><td class="right">210</td><td class="right q1-actual">0</td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-metric="calls"><td>コール数</td><td class="right">2,300</td><td><input type="number" min="0" data-store="vaz-oct-calls" value="0"></td><td class="right">2,900</td><td><input type="number" min="0" data-store="vaz-nov-calls" value="0"></td><td class="right">5,200</td><td class="right q1-actual">0</td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-metric="settled"><td>決着</td><td class="right">1,150</td><td><input type="number" min="0" data-store="vaz-oct-settled" value="0"></td><td class="right">950</td><td><input type="number" min="0" data-store="vaz-nov-settled" value="0"></td><td class="right">2,100</td><td class="right q1-actual">0</td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-metric="appts"><td><strong>アポ</strong></td><td class="right"><strong>22</strong></td><td><input type="number" min="0" data-store="vaz-oct-appts" value="0"></td><td class="right"><strong>28</strong></td><td><input type="number" min="0" data-store="vaz-nov-appts" value="0"></td><td class="right"><strong>50</strong></td><td class="right q1-actual">0</td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-metric="visits"><td><strong>訪問・面談の実施</strong></td><td class="right"><strong>10</strong></td><td><input type="number" min="0" data-store="vaz-oct-visits" value="0"></td><td class="right"><strong>23</strong></td><td><input type="number" min="0" data-store="vaz-nov-visits" value="0"></td><td class="right"><strong>33</strong></td><td class="right q1-actual">0</td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+            <tr data-metric="opps"><td><strong>案件化</strong></td><td class="right"><strong>2</strong></td><td><input type="number" min="0" data-store="vaz-oct-opps" value="0"></td><td class="right"><strong>6</strong></td><td><input type="number" min="0" data-store="vaz-nov-opps" value="0"></td><td class="right"><strong>8</strong></td><td class="right q1-actual">0</td><td><div class="progress"><span></span></div><div class="status">未入力</div></td></tr>
+          </tbody>
+        </table>
+                <p class="small">10月＝M&amp;A支援機関・太陽光の大屋根を中心に、設計事務所は週2件ペースで開始。事業コンサルは市川の精査が終わってから架電。11月＝設計事務所・事業コンサルの続きと太陽光の中規模880件。訪問・面談は、アポから1〜2週間後に実施する前提で、月の後半に取ったアポは翌月に数えています。</p>
+        <h3 style="margin-top:18px">担当別の内訳（一人あたりの負荷）</h3>
+        <table>
+          <thead><tr><th>受け手</th><th>対象リスト</th><th class="right">10月アポ</th><th class="right">11月アポ</th><th class="right">Q1アポ</th><th class="right">10月面談</th><th class="right">11月面談</th><th>週あたりの目安</th></tr></thead>
+          <tbody>
+            <tr><td><strong>河野</strong></td><td>設計事務所①-1</td><td class="right">5</td><td class="right">8</td><td class="right">13</td><td class="right">2</td><td class="right">6</td><td>週2件まで</td></tr>
+            <tr><td><strong>市川</strong>（案件化したら河野が同行）</td><td>事業コンサル①-2（精査後に架電）</td><td class="right">3</td><td class="right">6</td><td class="right">9</td><td class="right">1</td><td class="right">4</td><td>週1〜2件</td></tr>
+            <tr><td><strong>柳井</strong>（用地が絡む場合は河野が同行）</td><td>M&amp;A支援機関③</td><td class="right">4</td><td class="right">2</td><td class="right">6</td><td class="right">2</td><td class="right">3</td><td>週1件以下</td></tr>
+            <tr><td><strong>田中洋輔・柳井</strong></td><td>太陽光②（大屋根・中規模）</td><td class="right">10</td><td class="right">12</td><td class="right">22</td><td class="right">5</td><td class="right">10</td><td>週2〜3件（2人で分担）</td></tr>
+            <tr class="subtotal"><td colspan="2">部門合計</td><td class="right">22</td><td class="right">28</td><td class="right">50</td><td class="right">10</td><td class="right">23</td><td></td></tr>
+          </tbody>
+        </table>
+        <p class="small">面談＝訪問またはオンライン面談。設計事務所の残り約2件は12月に回ります。修繕⑥・シェルター⑧は12月以降のため、ここには入っていません。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>外注架電の管理KPI（VAZ TWOと週次で確認）<span class="tag new">追加</span></h2>
+      <div class="panel">
+        <table>
+          <thead><tr><th>指標</th><th>目安</th><th>根拠・考え方</th></tr></thead>
+          <tbody>
+            <tr><td>1時間あたりのコール数</td><td><strong>25回</strong></td><td>VAZ TWOの過去実績の中央値。20回を下回る週は、リストの質（番号違い・閉鎖）かトークかを確認する</td></tr>
+            <tr><td>決着率</td><td><strong>1周目57％・3周80％</strong></td><td>VAZ TWOの熊沢建設・ラ・カーサでの過去実績。決着＝アポ・お断り等の結論が出たもの（不在・受付止まりは未決着）</td></tr>
+            <tr><td>アポ率（決着に対する割合）</td><td><strong>リスト別 1〜4％</strong></td><td>仮説値。10月の2週分でリスト別の実績に置き換える</td></tr>
+            <tr><td>1アポあたりの架電時間</td><td><strong>第1波 約3.5時間</strong></td><td>約150時間÷約43アポ。時間単価をかけると1アポの費用になる。第2波・第3波ほど長くなる</td></tr>
+            <tr><td>アポの実施率</td><td><strong>90％以上</strong></td><td>キャンセル・日程変更で流れたアポを除いた割合。低い場合はアポの取り方（相手の温度感）を見直す</td></tr>
+            <tr><td>受け手ごとのアポの上限</td><td><strong>一人週2件まで</strong></td><td>一人に週2件を超えるアポが入らないよう、VAZ TWOが架電のペースを調整する。超える分は翌週以降に回す（太陽光は2人で週3件まで）</td></tr>
+            <tr><td>アポから訪問・面談までの日数</td><td><strong>7日以内</strong></td><td>関心が冷めないうちに会う。社内の受け手の日程枠を先に押さえておく</td></tr>
+            <tr><td>お断り理由の記録</td><td><strong>100％</strong></td><td>「間に合っている」「時期が違う」「決裁者不在」などに分けて集計し、トークとリストを直す</td></tr>
+            <tr><td>同じ拠点への重複架電</td><td><strong>0件</strong></td><td>工場・倉庫4リストの重なりを照合し、1拠点1窓口を守る</td></tr>
           </tbody>
         </table>
       </div>
@@ -165,6 +351,7 @@
         <div class="card"><div class="label">提案・概算見積</div><div class="value">5<span class="unit">件</span></div><div class="note">Q1累計</div></div>
         <div class="card"><div class="label">営業・調査工数</div><div class="value">120<span class="unit">時間</span></div><div class="note">週10時間目安</div></div>
       </div>
+      <div class="formula" style="margin-top:14px">外注架電リストとの関係：河野は設計事務所①-1のアポを受けます（2か月で約13件・週2件まで）。面談の実施は10月約2件・11月約6件で、上の訪問目標（10月8件・11月10件）のうち物流企業・銀行ルートの枠も残ります。事業コンサル①-2は市川が受け、案件化したものは河野が同行して引き取ります。初回はオンライン面談（30分）を基本にし、土地活用・事業承継の具体的な相談があるものから訪問に切り替えます。</div>
     </section>
 
     <section>
@@ -174,7 +361,7 @@
           <thead><tr><th>分野</th><th class="right">年間売上</th><th class="right">Q1基準</th><th>主担当の役割</th></tr></thead>
           <tbody>
             <tr><td><span class="tag">用地取得・民間土木</span></td><td class="right">1億円</td><td class="right">2,500万円</td><td>非住宅設計事務所・事業コンサル・銀行から上流相談を発掘し、事業用地・造成案件へつなげる</td></tr>
-            <tr><td><span class="tag gray">解体との連携支援</span></td><td class="right">—</td><td class="right">—</td><td>銀行営業先リストを柳井と共有。同日営業につなげる</td></tr>
+            <tr><td><span class="tag gray">解体との連携支援</span></td><td class="right">—</td><td class="right">—</td><td>銀行営業先リストを柳井と共有。同日営業につなげる。M&amp;A支援機関③のアポは柳井と同行する</td></tr>
             <tr><td><span class="tag gray">PPA支援候補</span></td><td class="right">—</td><td class="right">—</td><td>必要時に蓄電池の商品選定・営業ツール検討を支援。今回の行動KPIには含めない</td></tr>
             <tr><td><strong>主担当合計</strong></td><td class="right"><strong>1億円</strong></td><td class="right"><strong>2,500万円</strong></td><td>※Q1の単純按分。個人売上ノルマではなく担当分野の受注貢献額</td></tr>
           </tbody>
@@ -212,7 +399,7 @@
             <tr><td>Qごとの獲得基準比率</td><td>Q1基準2,500万円 ÷ 年間1億円</td><td><strong>Q1：25％</strong></td><td>Q2・Q3・Q4も各25％の単純按分</td></tr>
           </tbody>
         </table>
-        <p class="small">案件区分は記録上、事業用地の仕入れ・買主探索／工場・倉庫／店舗／オフィス／造成単体／解体・造成・利活用／その他建築請負に分類します。数値は管理を簡潔にするため全案件の平均仮説とし、Q1終了後に実績で補正します。</p>
+        <p class="small">案件区分は記録上、事業用地の仕入れ・買主探索／工場・倉庫／店舗／オフィス／造成単体／解体・造成・利活用／その他建築請負に分類します。数値は管理を簡潔にするため全案件の平均仮説とし、Q1終了後に実績で補正します。外注架電のKPIツリーでも、訪問→案件化25％・案件化→契約33％はこの仮説値を使っています。</p>
       </div>
     </section>
 
@@ -227,6 +414,8 @@
               <tr><td>営業・調査</td><td><strong>10時間</strong></td><td>訪問、土地情報の確認、役所・事業化調査</td></tr>
               <tr><td>次回行動</td><td><strong>4件</strong></td><td>訪問後に次の期限・担当を登録</td></tr>
               <tr><td>案件記録</td><td><strong>100％</strong></td><td>案件名・区分・見込み額を予定名に記載</td></tr>
+              <tr><td>外注架電の確認</td><td><strong>1回</strong></td><td>VAZ TWOの週次報告で、コール数・決着・アポ・お断り理由を確認</td></tr>
+              <tr><td>リスト由来アポの受け枠</td><td><strong>2件まで</strong></td><td>オンライン面談（30分）の枠を先に押さえ、アポから7日以内に会う</td></tr>
             </tbody>
           </table>
         </div>
@@ -235,12 +424,12 @@
         <h2>案件化の判定</h2>
         <div class="panel">
           <ul class="checklist">
-            <li><input type="checkbox"><span>銀行営業先リストを作成し、解体の柳井と共有できている</span></li>
-            <li><input type="checkbox"><span>VAZ TWOの設計事務所・事業コンサルリストを確認し、優先順位を付けている</span></li>
-            <li><input type="checkbox"><span>顧客・紹介元と土地活用または事業承継の課題が確認できている</span></li>
-            <li><input type="checkbox"><span>次回訪問・調査・提案の日付が決まっている</span></li>
-            <li><input type="checkbox"><span>3％を基準に、案件規模・造成費を踏まえたフィー案を整理している</span></li>
-            <li><input type="checkbox"><span>売上見込み・粗利見込みを仮入力している</span></li>
+            <li><input type="checkbox" data-check="check-0"><span>銀行営業先リストを作成し、解体の柳井と共有できている</span></li>
+            <li><input type="checkbox" data-check="check-1"><span>VAZ TWOの設計事務所・事業コンサルリストを確認し、優先順位を付けている</span></li>
+            <li><input type="checkbox" data-check="check-2"><span>顧客・紹介元と土地活用または事業承継の課題が確認できている</span></li>
+            <li><input type="checkbox" data-check="check-3"><span>次回訪問・調査・提案の日付が決まっている</span></li>
+            <li><input type="checkbox" data-check="check-4"><span>3％を基準に、案件規模・造成費を踏まえたフィー案を整理している</span></li>
+            <li><input type="checkbox" data-check="check-5"><span>売上見込み・粗利見込みを仮入力している</span></li>
           </ul>
         </div>
       </div>
@@ -248,35 +437,54 @@
 
     <section class="grid two">
       <div>
-        <h2>用地取得営業の連携タスク</h2>
+        <h2>外注架電の立ち上げタスク<span class="tag new">追加</span></h2>
         <div class="panel">
           <ul class="checklist">
-            <li><input type="checkbox"><span>銀行営業先リストを作成し、解体の柳井が同日営業に使える状態にする</span></li>
-            <li><input type="checkbox"><span>VAZ TWOの設計事務所・事業コンサルリストを受け取り、訪問優先順位を付ける</span></li>
-            <li><input type="checkbox"><span>営業資料について斎藤と詳細打合せを行う</span></li>
-            <li><input type="checkbox"><span>フィー3％を基準に、案件規模・造成費に応じた料率案を整理する</span></li>
-            <li><input type="checkbox"><span>市川の営業参加（名古屋〜三河・碧海信用金庫・岡崎の税理士法人）を営業体制案に入れて確認する</span></li>
+            <li><input type="checkbox" data-check="vaz-0"><span>VAZ TWOから、熊沢建設・ラ・カーサの過去の架電データでの商材別アポ率を受け取り、仮説値を置き換える</span></li>
+            <li><input type="checkbox" data-check="vaz-1"><span>事業コンサル①-2（457件）を架電前に目視で精査し、測量・計測会社などを外す（市川）</span></li>
+            <li><input type="checkbox" data-check="vaz-2"><span>工場・倉庫4リストの重なりを照合し、1拠点1窓口のルールをVAZ TWOと合意する</span></li>
+            <li><input type="checkbox" data-check="vaz-3"><span>アライアンス用（設計事務所・事業コンサル・M&amp;A支援機関）と太陽光用のトークを分けて用意する</span></li>
+            <li><input type="checkbox" data-check="vaz-4"><span>アポの受け手と、訪問・オンライン面談の日程枠を週ごとに決める</span></li>
+            <li><input type="checkbox" data-check="vaz-5"><span>修繕・営繕⑥とシェルター⑧の社内の受け手を決める</span></li>
+            <li><input type="checkbox" data-check="vaz-6"><span>週次報告の様式（コール数・決着・アポ・お断り理由）と、架電時間の上限をVAZ TWOと合意する</span></li>
           </ul>
         </div>
       </div>
       <div>
-        <h2>次回会議（金曜15:00）の確認事項</h2>
+        <h2>用地取得営業の連携タスク</h2>
         <div class="panel">
           <ul class="checklist">
-            <li><input type="checkbox"><span>用地取得営業資料で、最初に説明するサービス範囲を確認</span></li>
-            <li><input type="checkbox"><span>設計事務所・事業コンサル・銀行別の営業資料の使い分けを確認</span></li>
-            <li><input type="checkbox"><span>3％フィーの算定基準と、大型案件・造成費が大きい案件の考え方を確認</span></li>
-            <li><input type="checkbox"><span>アポイント後の訪問担当・資料準備・次回行動の分担を確認</span></li>
+            <li><input type="checkbox" data-check="check-6"><span>銀行営業先リストを作成し、解体の柳井が同日営業に使える状態にする</span></li>
+            <li><input type="checkbox" data-check="check-7"><span>VAZ TWOの設計事務所・事業コンサルリストを受け取り、訪問優先順位を付ける</span></li>
+            <li><input type="checkbox" data-check="check-8"><span>営業資料について斎藤と詳細打合せを行う</span></li>
+            <li><input type="checkbox" data-check="check-9"><span>フィー3％を基準に、案件規模・造成費に応じた料率案を整理する</span></li>
+            <li><input type="checkbox" data-check="check-10"><span>市川の営業参加（名古屋〜三河・碧海信用金庫・岡崎の税理士法人）を営業体制案に入れて確認する</span></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <p class="footer">作成：河野｜営業部門共有用｜作成基準：経営方針・会議共有事項／カレンダー工数集計（2026年8月17日〜9月21日）</p>
+    <section>
+      <h2>次回会議（金曜15:00）の確認事項</h2>
+      <div class="panel">
+        <ul class="checklist">
+          <li><input type="checkbox" data-check="check-11"><span>用地取得営業資料で、最初に説明するサービス範囲を確認</span></li>
+          <li><input type="checkbox" data-check="check-12"><span>設計事務所・事業コンサル・銀行別の営業資料の使い分けを確認</span></li>
+          <li><input type="checkbox" data-check="check-13"><span>3％フィーの算定基準と、大型案件・造成費が大きい案件の考え方を確認</span></li>
+          <li><input type="checkbox" data-check="check-14"><span>アポイント後の訪問担当・資料準備・次回行動の分担を確認</span></li>
+          <li><input type="checkbox" data-check="vaz-7"><span>外注架電の優先順位（第1波〜第3波）と、Q1残りの架電時間を確認</span></li>
+          <li><input type="checkbox" data-check="vaz-8"><span>太陽光②と遮熱⑦が重なる工場への声のかけ方（どちらの会社名で、何を案内するか）を確認</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <p class="footer">作成：河野｜営業部門共有用｜作成基準：経営方針・会議共有事項／カレンダー工数集計（2026年8月17日〜9月21日）／VAZ TWO「熊沢建設・ラカーサ 全事業リスト一覧」（2026年9月28日）・同 太陽光蓄電リスト（9月7日）・M&amp;A支援機関リスト</p>
   </main>
   <script>
     const storageKey = 'kono-kpi-q1-2026';
-    const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch (e) { saved = {}; }
+    function persist() { try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch (e) {} }
     const publishedChecklist = {
       'check-0': true,
       'check-1': false,
@@ -302,18 +510,24 @@
       saved['sep-opps'] = 2;
       saved['sep-proposals'] = 2;
       saved.__sepActualsUpdated20260922 = true;
-      localStorage.setItem(storageKey, JSON.stringify(saved));
+      persist();
     }
+
+    /* ---------- 河野の月別実績 ---------- */
     document.querySelectorAll('input[data-key]').forEach(input => {
       if (saved[input.dataset.key] !== undefined) input.value = saved[input.dataset.key];
       input.addEventListener('input', update);
     });
-    document.querySelectorAll('.checklist input').forEach((input, i) => {
-      const key = 'check-' + i;
+    document.querySelectorAll('.checklist input[data-check]').forEach(input => {
+      const key = input.dataset.check;
       input.checked = saved[key] === true;
-      input.addEventListener('change', () => { saved[key] = input.checked; localStorage.setItem(storageKey, JSON.stringify(saved)); });
+      input.addEventListener('change', () => { saved[key] = input.checked; persist(); });
     });
     function value(key) { return Number(document.querySelector(`[data-key="${key}"]`).value || 0); }
+    function setStatus(el, ratio) {
+      el.textContent = ratio >= 100 ? '達成' : ratio > 0 ? ratio + '%進捗' : '未入力';
+      el.className = 'status ' + (ratio >= 100 ? 'good' : ratio >= 50 ? 'warn' : 'bad');
+    }
     function update() {
       const targets = { visits: 0, opps: 0, proposals: 0, contracts: 0 };
       const actuals = { visits: 0, opps: 0, proposals: 0, contracts: 0 };
@@ -326,9 +540,7 @@
         const ratios = [[v, tv], [o, to], [p, tp], [c, tc]].filter(([actual, target]) => target > 0).map(([actual, target]) => actual / target);
         const ratio = Math.min(100, Math.round(ratios.reduce((sum, item) => sum + item, 0) / ratios.length * 100));
         row.querySelector('.progress span').style.width = ratio + '%';
-        const status = row.querySelector('.status');
-        status.textContent = ratio >= 100 ? '達成' : ratio > 0 ? ratio + '%進捗' : '未入力';
-        status.className = 'status ' + (ratio >= 100 ? 'good' : ratio >= 50 ? 'warn' : 'bad');
+        setStatus(row.querySelector('.status'), ratio);
         saved[`${m}-visits`] = v; saved[`${m}-opps`] = o; saved[`${m}-proposals`] = p;
         saved[`${m}-contracts`] = c;
       });
@@ -338,12 +550,108 @@
       document.getElementById('totalContracts').innerHTML = `<strong>${actuals.contracts}</strong>`;
       const totalRatios = [[actuals.visits, targets.visits], [actuals.opps, targets.opps], [actuals.proposals, targets.proposals], [actuals.contracts, targets.contracts]].filter(([actual, target]) => target > 0).map(([actual, target]) => actual / target);
       const totalRatio = Math.min(100, Math.round(totalRatios.reduce((sum, item) => sum + item, 0) / totalRatios.length * 100));
-      const totalStatus = document.getElementById('totalStatus');
-      totalStatus.textContent = totalRatio >= 100 ? '達成' : totalRatio > 0 ? totalRatio + '%進捗' : '未入力';
-      totalStatus.className = 'status ' + (totalRatio >= 100 ? 'good' : totalRatio >= 50 ? 'warn' : 'bad');
-      localStorage.setItem(storageKey, JSON.stringify(saved));
+      setStatus(document.getElementById('totalStatus'), totalRatio);
+      persist();
     }
+
+    /* ---------- 外注架電：リスト別の見込み ---------- */
+    // cph = 1時間あたりのコール数（VAZ TWO見積もりの幅）, rate = アポ率（決着に対する％・仮説）
+    const LISTS = [
+      { id: 'ma',      no: '③',   name: 'M&A支援機関',                                   owner: '柳井・河野',     n: 191,  cph: [25, 30], rate: 4,   wave: 1 },
+      { id: 'arch',    no: '①-1', name: '設計事務所',                                    owner: '河野',           n: 611,  cph: [25, 30], rate: 3,   wave: 1 },
+      { id: 'cons',    no: '①-2', name: '事業コンサル等（精査前の件数）',                owner: '市川',           n: 457,  cph: [25, 30], rate: 2.5, wave: 1 },
+      { id: 'solarL',  no: '②',   name: '太陽光｜屋根5,000㎡以上',                       owner: '田中洋輔・柳井', n: 638,  cph: [20, 25], rate: 2.5, wave: 1 },
+      { id: 'solarSA', no: '②',   name: '太陽光｜屋根5,000㎡未満・推定売上67億以上',     owner: '田中洋輔・柳井', n: 354,  cph: [20, 25], rate: 2,   wave: 2 },
+      { id: 'solarB',  no: '②',   name: '太陽光｜屋根3,000〜5,000㎡・推定売上33億以上',  owner: '田中洋輔・柳井', n: 526,  cph: [20, 25], rate: 1.5, wave: 2 },
+      { id: 'solarS',  no: '②',   name: '太陽光｜屋根1,000〜3,000㎡・その他',            owner: '田中洋輔・柳井', n: 2190, cph: [20, 25], rate: 1,   wave: 3 },
+      { id: 'repair',  no: '⑥',   name: '修繕・営繕（尾張・推定売上10〜50億）',          owner: '要確定',         n: 3054, cph: [20, 25], rate: 1.5, wave: 3 },
+      { id: 'shelter', no: '⑧',   name: 'やぐら型シェルター（三河・推定売上50億以上）',  owner: '要確定',         n: 1169, cph: [20, 25], rate: 1,   wave: 3 }
+    ];
+    const WAVES = { 1: '第1波（10月）', 2: '第2波（11月）', 3: '第3波（12月以降・Q2）' };
+    const fmt = (x, d = 0) => Number(x).toLocaleString('ja-JP', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const body = document.getElementById('listKpiBody');
+    let html = '';
+    [1, 2, 3].forEach(w => {
+      html += `<tr class="group"><td colspan="12">${WAVES[w]}</td></tr>`;
+      LISTS.filter(l => l.wave === w).forEach(l => {
+        html += `<tr data-list="${l.id}"${w === 3 ? ' class="later"' : ''}><td>${l.no}</td><td>${l.name}</td><td>${l.owner === '要確定' ? '<span class="tag amber">要確定</span>' : l.owner}</td><td class="right">${fmt(l.n)}</td><td class="right nowrap c-hours"></td><td class="right c-settled"></td><td class="right nowrap"><input class="rate" type="number" min="0" max="100" step="0.5" data-store="rate-${l.id}" value="${l.rate}">％</td><td class="right c-appts"></td><td class="right c-visits"></td><td class="right c-opps"></td><td class="right c-wins"></td><td class="right nowrap c-per"></td></tr>`;
+      });
+      html += `<tr class="subtotal" data-wave="${w}"><td colspan="3">${w === 3 ? '第3波 小計' : w === 2 ? '第2波 小計' : '第1波 小計'}</td><td class="right w-n"></td><td class="right nowrap w-hours"></td><td class="right w-settled"></td><td></td><td class="right w-appts"></td><td class="right w-visits"></td><td class="right w-opps"></td><td class="right w-wins"></td><td class="right nowrap w-per"></td></tr>`;
+    });
+    body.innerHTML = html;
+
+    function num(key, fallback) {
+      const el = document.querySelector(`[data-store="${key}"]`);
+      const v = el && el.value !== '' ? Number(el.value) : NaN;
+      return isNaN(v) ? fallback : v;
+    }
+    function recalc() {
+      const settle = num('calc-settle', 80) / 100, visit = num('calc-visit', 90) / 100, opp = num('calc-opp', 25) / 100, close = num('calc-close', 33) / 100;
+      const monthly = num('calc-monthly', 120), cost = num('calc-cost', 0);
+      const waveTotals = {};
+      LISTS.forEach(l => {
+        const lo = l.n * 1.9 / l.cph[1], hi = l.n * 2.1 / l.cph[0], mid = (lo + hi) / 2;
+        const settled = l.n * settle, appts = settled * num(`rate-${l.id}`, l.rate) / 100;
+        const visits = appts * visit, opps = visits * opp, wins = opps * close;
+        const row = body.querySelector(`tr[data-list="${l.id}"]`);
+        row.querySelector('.c-hours').textContent = `${fmt(lo)}〜${fmt(hi)}h`;
+        row.querySelector('.c-settled').textContent = fmt(settled);
+        row.querySelector('.c-appts').textContent = fmt(appts, 1);
+        row.querySelector('.c-visits').textContent = fmt(visits, 1);
+        row.querySelector('.c-opps').textContent = fmt(opps, 1);
+        row.querySelector('.c-wins').textContent = fmt(wins, 1);
+        row.querySelector('.c-per').textContent = appts > 0 ? perText(mid / appts, cost) : '—';
+        const t = waveTotals[l.wave] || (waveTotals[l.wave] = { n: 0, lo: 0, hi: 0, mid: 0, settled: 0, appts: 0, visits: 0, opps: 0, wins: 0 });
+        t.n += l.n; t.lo += lo; t.hi += hi; t.mid += mid; t.settled += settled; t.appts += appts; t.visits += visits; t.opps += opps; t.wins += wins;
+      });
+      Object.entries(waveTotals).forEach(([w, t]) => {
+        const row = body.querySelector(`tr[data-wave="${w}"]`);
+        row.querySelector('.w-n').textContent = fmt(t.n);
+        row.querySelector('.w-hours').textContent = `${fmt(t.lo)}〜${fmt(t.hi)}h`;
+        row.querySelector('.w-settled').textContent = fmt(t.settled);
+        row.querySelector('.w-appts').textContent = fmt(t.appts, 1);
+        row.querySelector('.w-visits').textContent = fmt(t.visits, 1);
+        row.querySelector('.w-opps').textContent = fmt(t.opps, 1);
+        row.querySelector('.w-wins').textContent = fmt(t.wins, 1);
+        row.querySelector('.w-per').textContent = t.appts > 0 ? perText(t.mid / t.appts, cost) : '—';
+      });
+      const q1 = ['1', '2'].reduce((a, w) => ({ mid: a.mid + waveTotals[w].mid, appts: a.appts + waveTotals[w].appts, opps: a.opps + waveTotals[w].opps, wins: a.wins + waveTotals[w].wins }), { mid: 0, appts: 0, opps: 0, wins: 0 });
+      const all = Object.values(waveTotals).reduce((a, t) => a + t.mid, 0);
+      document.getElementById('calcSummary').innerHTML =
+        `第1波＋第2波：架電 約${fmt(q1.mid)}時間 → アポ 約${fmt(q1.appts)}件・案件化 約${fmt(q1.opps, 1)}件・契約 約${fmt(q1.wins, 1)}件（月${fmt(monthly)}時間なら約${fmt(q1.mid / monthly, 1)}か月）。` +
+        `<br>熊沢建設の全リスト（第3波まで）：架電 約${fmt(all)}時間（月${fmt(monthly)}時間なら約${fmt(all / monthly, 1)}か月）。`;
+    }
+    function perText(hours, cost) {
+      return cost > 0 ? `${fmt(hours, 1)}h<br><span class="small">${fmt(hours * cost)}円</span>` : `${fmt(hours, 1)}h`;
+    }
+
+    /* ---------- 外注架電：月別実績 ---------- */
+    function updateVaz() {
+      document.querySelectorAll('#vazTable tbody tr[data-metric]').forEach(row => {
+        const m = row.dataset.metric;
+        const actual = num(`vaz-oct-${m}`, 0) + num(`vaz-nov-${m}`, 0);
+        const target = Number(row.children[5].textContent.replace(/,/g, ''));
+        row.querySelector('.q1-actual').textContent = fmt(actual);
+        const ratio = target > 0 ? Math.min(100, Math.round(actual / target * 100)) : 0;
+        row.querySelector('.progress span').style.width = ratio + '%';
+        setStatus(row.querySelector('.status'), ratio);
+      });
+    }
+
+    document.querySelectorAll('input[data-store]').forEach(input => {
+      const key = input.dataset.store;
+      if (saved[key] !== undefined) input.value = saved[key];
+      input.addEventListener('input', () => {
+        saved[key] = input.value;
+        persist();
+        recalc();
+        updateVaz();
+      });
+    });
+
     update();
+    recalc();
+    updateVaz();
   </script>
 </body>
 </html>
